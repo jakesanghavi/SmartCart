@@ -1,14 +1,10 @@
-import asyncio
 from database.supabaseService import SupabaseService
 
-async def main():
-    # Initialize the Supabase service
-    service = SupabaseService()
 
-    # Await the async query_table method
-    res = await service.query_table("users")
+# Initialize the Supabase service
+service = SupabaseService()
 
-    print(res)
+# Await the async query_table method
+res = service.query_table(table_name="stores")
 
-if __name__ == "__main__":
-    asyncio.run(main())
+print(res)
