@@ -1,4 +1,4 @@
 To-do for scraper
-- login obstacle
+- ~~login obstacle~~ *solved via directly removing the blocking divs with Selenium*
 - catch code for dismissing pop ups
 - which addresses will represent zip codes?
