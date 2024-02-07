@@ -23,7 +23,7 @@ class SupabaseClient:
         :return: Result of the query.
         """
         result = self.client.table(table_name).select(select_query).execute()
-        return result
+        return result.data
     
     def insert_table(self, table_name, data):
         """
@@ -34,7 +34,7 @@ class SupabaseClient:
         :return: Result of the insert.
         """
         result = self.client.table(table_name).insert(data).execute()
-        return result
+        return result.data
     
     def upsert_table(self, table_name, data):
         """
@@ -45,7 +45,7 @@ class SupabaseClient:
         :return: Result of the upsert.
         """
         result = self.client.table(table_name).upsert(data).execute()
-        return result   
+        return result.data
     
     def delete_table(self, table_name, where_clause):
         """
@@ -56,4 +56,4 @@ class SupabaseClient:
         :return: Result of the delete.
         """
         result = self.client.table(table_name).delete().match(where_clause).execute()
-        return result
+        return result.data

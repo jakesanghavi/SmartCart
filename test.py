@@ -13,4 +13,4 @@ service.insert_scraper_objects(objs)
 
 items: list[Item] = service.queryAllItems()
 
-print(items)
+print(items[0].to_dict())

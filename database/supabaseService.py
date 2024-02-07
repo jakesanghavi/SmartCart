@@ -32,4 +32,13 @@ class SupabaseService:
     
     def queryAllItems(self) -> list[Item]:
         result = self.client.query_table(table_name="items")
-        return result
+        
+        output = []
+        for item in result:
+            print(item)
+            output.append(Item(
+                id=item["id"],
+                name=item["name"],
+            ))
+            
+        return output
