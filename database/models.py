@@ -67,7 +67,7 @@ class ItemPrice:
         self.price = price
         self.quantity = quantity
         self.unit = unit
-        self.date = datetime
+        self.datetime = datetime
         self.image_url = image_url
         
     def to_dict(self):
@@ -78,7 +78,7 @@ class ItemPrice:
             "price": self.price,
             "quantity": self.quantity,
             "unit": self.unit,
-            "date": self.date,
+            "datetime": self.datetime,
             "image_url": self.image_url
         }
         
@@ -89,7 +89,7 @@ class ItemPrice:
             "price": self.price,
             "quantity": self.quantity,
             "unit": self.unit,
-            "date": self.date,
+            "datetime": self.datetime,
             "image_url": self.image_url
         }
 
@@ -145,7 +145,7 @@ class ScraperObject:
         item_price: float, 
         item_quantity: float, 
         item_unit: str, 
-        datetime: str = datetime.now(), 
+        datetime: str = datetime.now().isoformat(), 
         tags: list[str] = [], 
         image_url: str = ""
     ):
@@ -160,7 +160,6 @@ class ScraperObject:
         
     def to_dict(self):
         return {
-            "id": self.id,
             "store_name": self.store_name,
             "item_name": self.item_name,
             "item_price": self.item_price,
@@ -170,17 +169,5 @@ class ScraperObject:
             "tags": self.tags,
             "image_url": self.image_url
         }
-    
-    def to_dict_no_id(self):
-        return {
-            "store_name": self.store_name,
-            "item_name": self.item_name,
-            "item_price": self.item_price,
-            "item_quantity": self.item_quantity,
-            "item_unit": self.item_unit,
-            "datetime": self.datetime,
-            "tags": self.tags,
-            "image_url": self.image_url
-        }
-        
+
 

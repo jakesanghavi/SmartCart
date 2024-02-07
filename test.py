@@ -11,6 +11,6 @@ objs: list[ScraperObject] = get_scraper_objects(df)
 service: SupabaseService = SupabaseService()
 service.insert_scraper_objects(objs)
 
-items: list[Item] = service.queryAllItems()
+items: list[Item] = service.query_all_items()
 
 print(items[0].to_dict())

@@ -2,27 +2,6 @@ import pandas as pd
 import re
 from database.models import ScraperObject
 
-def get_keywords(string):
-    """
-    Get all sequential combinations of words in a string.
-    
-    :param string: String to get combinations from.
-    :return: List of combinations.
-    """
-    stop_words = ["i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours", "yourself", "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself", "it", "its", "itself", "they", "them", "their", "theirs", "themselves", "what", "which", "who", "whom", "this", "that", "these", "those", "am", "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "having", "do", "does", "did", "doing", "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while", "of", "at", "by", "for", "with", "about", "against", "between", "into", "through", "during", "before", "after", "above", "below", "to", "from", "up", "down", "in", "out", "on", "off", "over", "under", "again", "further", "then", "once", "here", "there", "when", "where", "why", "how", "all", "any", "both", "each", "few", "more", "most", "other", "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very", "s", "t", "can", "will", "just", "don", "should", "now"]
-    punctuation = [".", ",", "!", "?", ";", ":", "'", '"', "(", ")", "[", "]", "{", "}", "<", ">", "/", "\\", "|", "@", "#", "$", "%", "^", "&", "*", "-", "_", "+", "=", "~", "`"]
-    
-    words = string.split()
-
-    words = [word for word in words if word not in stop_words and word not in punctuation]
-    
-    combinations = []
-    for i in range(len(words)):
-        for j in range(i, len(words)):
-            combinations.append(" ".join(words[i:j+1]))
-    return combinations 
-
-
 def parse_string_to_list(string: str):
     """
     Parses list like "['Organic', 'Non-GMO']" to list of strings.
@@ -30,8 +9,16 @@ def parse_string_to_list(string: str):
     :param string: String to parse.
     :return: List of strings.
     """
+    string = string.strip("[]")  # Remove square brackets
+    items = string.split(",")  # Split by comma
     
-    return string[1:-1].split(", ")
+    # Remove leading and trailing spaces from each item
+    items = [item.strip() for item in items]
+    
+    # Remove empty strings
+    items = [item for item in items if item]
+    
+    return items
 
 def parse_quantity_and_unit_from_amount(amount: str):
     """
@@ -72,7 +59,7 @@ def get_scraper_objects(data: pd.DataFrame):
     for index, row in data.iterrows():
         store_name = row["Store"]
         item_name = row["Item Name"]
-        item_price = row["Price"]
+        item_price = float(row["Price"][1:])
         item_quantity, item_unit = parse_quantity_and_unit_from_amount(row["Amount"])
         tags = parse_string_to_list(row["Tags"])
         
