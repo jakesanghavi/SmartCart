@@ -1,10 +1,16 @@
 from database.supabaseService import SupabaseService
+from database.utils import get_scraper_objects
+from database.models import ScraperObject, Item
+import pandas as pd
 
+# Read csv
+df: pd.DataFrame = pd.read_csv('./scraper/instacart_scraper_v1_results.csv')
 
-# Initialize the Supabase service
-service = SupabaseService()
+objs: list[ScraperObject] = get_scraper_objects(df)
 
-# Await the async query_table method
-res = service.query_table(table_name="stores")
+service: SupabaseService = SupabaseService()
+service.insert_scraper_objects(objs)
 
-print(res)
+items: list[Item] = service.queryAllItems()
+
+print(items)
