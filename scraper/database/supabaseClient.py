@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from supabase import create_client, Client
-from database.models import Item, Store, Tag, ItemPrice, ItemPriceTags
+from scraper.database.models import Item, Store, Tag, ItemPrice, ItemPriceTags
 
 class SupabaseClient:
     def __init__(self):
