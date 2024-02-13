@@ -15,6 +15,9 @@ def parse_string_to_list(string: str):
     # Remove leading and trailing spaces from each item
     items = [item.strip() for item in items]
     
+    # Remove trailing and leading quotations
+    items = [item.strip("'\"") for item in items]
+    
     # Remove empty strings
     items = [item for item in items if item]
     
