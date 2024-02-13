@@ -1,6 +1,6 @@
 from database.supabaseService import SupabaseService
 from database.utils import get_scraper_objects
-from database.models import ScraperObject, Item
+from scraper.database.models import ScraperObject, Item
 import pandas as pd
 
 # Read csv
