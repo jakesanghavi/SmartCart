@@ -6,7 +6,8 @@ pip install python-dotenv
 
 **For website:**
 
-1. `cd website` to enter website folder
-2. Open terminal in javascript
-3. run `npm install`
-4. Use `npm start` to launch (run index js), or `npm test` to run test.js
+1. Install Node.js
+2. `cd smartcart` to enter website folder
+3. Open terminal in javascript
+4. run `npm install`
+5. Use `npm start` to launch
