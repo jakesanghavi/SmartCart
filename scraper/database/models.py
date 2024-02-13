@@ -1,34 +1,5 @@
 from datetime import datetime
 
-class Store:
-    def __init__(
-        self, 
-        name: str, 
-        zipcode: str = "", 
-        logo_url: str = "",
-        id: str = ""
-    ):
-        self.name: str = name
-        self.zipcode: str = zipcode
-        self.logo_url: str = logo_url
-        self.id: str = id
-        
-        
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "zipcode": self.zipcode,
-            "logo_url": self.logo_url
-        }
-    
-    def to_dict_no_id(self):
-        return {
-            "name": self.name,
-            "zipcode": self.zipcode,
-            "logo_url": self.logo_url
-        }
-
 class Item:
     def __init__(
         self, 
