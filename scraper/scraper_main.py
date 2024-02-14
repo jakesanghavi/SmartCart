@@ -110,20 +110,8 @@ driver.quit()
 # Add all of our results to the full dataframe
 df = pd.concat([df] + to_concat, ignore_index=True)
 
-# Sometimes there is no unit price, but it gets set anyway
-# It always gets set the amount/weight in this case
-# So, if these two are the same, then set unit price
-# to be an empty string
-mask = df['Unit Price'] == df['Amount']
-df.loc[mask, 'Unit Price'] = ""
-
-# Drop duplicates here - sometimes there is a "favorites" section
-# Which contains repeated items
-df = df.drop_duplicates(subset=['Item Name', 'Price', 'Amount'])
-
-# If the item name isn't presnet, something has gone wrong. In this
-# case, just throw the row away
-df = df.dropna(subset=['Item Name'])
+# Filter out missing data
+df = df_filter(df)
 
 # Save the dataframe to csv
 df.to_csv(f"{'_'.join(original_store.split())}.csv", index=False)
