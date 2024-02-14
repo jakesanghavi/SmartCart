@@ -13,34 +13,36 @@ class SupabaseClient {
     this.client = createClient(supabaseUrl, supabaseKey);
   }
 
-  async queryTable(table_name, select_query = "*") {
-    /**
-     * Perform a query on a specified table.
-     *
-     * @param {string} table_name - Name of the table to query.
-     * @param {string} select_query - Columns to select, defaults to '*'.
-     * @return {Object} Result of the query.
-     */
+  /**
+   * Perform a query on a specified table.
+   *
+   * @param {string} table_name - Name of the table to query.
+   * @param {string} select_query - Columns to select, defaults to '*'.
+   * @param {string} filter_query - Filter condition, defaults to ''.
+   * @return {Object} Result of the query.
+   */
+  async queryTable(table_name, select_query = "*", filter_query = "") {
+    if (filter_query === "") {
+      filter_query = "true";
+    }
+
     const { data, error } = await this.client
       .from(table_name)
-      .select(select_query);
+      .select(select_query)
+      .filter(filter_query);
+
     if (error) throw error;
     return data;
   }
 
-  async insertTable(table_name, data) {
-    /**
-     * Insert data into a specified table.
-     *
-     * @param {string} table_name - Name of the table to insert into.
-     * @param {Object} data - Data to insert.
-     * @return {Object} Result of the insert.
-     */
-    const { data: insertedData, error } = await this.client
+  async queryTableIlike(table_name, ilike_column, ilike_query) {
+    const { data, error } = await this.client
       .from(table_name)
-      .insert(data);
+      .select()
+      .ilike(ilike_column, ilike_query);
+
     if (error) throw error;
-    return insertedData;
+    return data;
   }
 }
 

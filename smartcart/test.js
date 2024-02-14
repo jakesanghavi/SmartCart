@@ -6,7 +6,7 @@ async function testSupabaseService() {
 
   // Example usage: querying a table
   try {
-    const items = await supabaseService.queryTable("items");
+    const items = await supabaseService.getItemsForSearchTerm("organic apple");
     console.log("Items:", items);
   } catch (error) {
     console.error("Error querying items:", error);
