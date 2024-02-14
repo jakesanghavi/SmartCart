@@ -227,3 +227,24 @@ def reakit_filter(portals, fake_labels, mapping):
     # Sort the filtered portals based on the index in the mapping list
     reakit_portals = sorted(filtered_portals, key=lambda x: get_mapping_index(x, mapping))
     return reakit_portals
+
+
+def df_filter(df):
+    # Sometimes there is no unit price, but it gets set anyway
+    # It always gets set the amount/weight in this case
+    # So, if these two are the same, then set unit price
+    # to be an empty string
+    mask = df['Unit Price'] == df['Amount']
+    df.loc[mask, 'Unit Price'] = ""
+
+    # Drop duplicates here - sometimes there is a "favorites" section
+    # Which contains repeated items
+    df = df.drop_duplicates(subset=['Item Name', 'Price', 'Amount'])
+
+    # If the item name isn't presnet, something has gone wrong. In this
+    # case, just throw the row away
+    df = df.dropna(subset=['Item Name'])
+
+    df['Amount'] = df['Amount'].fillna('1 each')
+    return df
+    
