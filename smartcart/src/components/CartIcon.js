@@ -12,6 +12,7 @@ const CartIcon = () => {
         justifyContent: 'center',
         float : 'right',
         alignItems: 'center',
+        addEventListener: 'click',
       };
       const textStyle = {
         fontSize: 60,
@@ -23,6 +24,7 @@ const CartIcon = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        color: 'white',
       };
       const iconStyle = {
         width: 100,

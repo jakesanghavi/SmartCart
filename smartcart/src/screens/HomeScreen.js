@@ -1,13 +1,12 @@
-import './App.css';
-import CartIcon from './components/CartIcon.js';
-import Logo from './components/Logo.js';
-import SearchBarIcon from './components/SearchBarIcon.js';
-import HomeScreen from './screens/HomeScreen.js';
+import '../App.css';
+import CartIcon from '../components/CartIcon.js';
+import Logo from '../components/Logo.js';
+import SearchBarIcon from '../components/SearchBarIcon.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header"
+const HomeScreen = () => {
+    return(
+    <div>
+    <header className="HomeScreen"
         style={{
           display: 'flex',
           flexDirection: 'row',
@@ -28,7 +27,7 @@ function App() {
       </div>
       </header>
     </div>
-  );
+    );
 }
 
-export default App;
+export default HomeScreen;

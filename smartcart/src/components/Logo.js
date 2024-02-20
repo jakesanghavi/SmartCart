@@ -15,9 +15,9 @@ const Logo = () => {
     const textStyle = {
         fontSize: 60,
         textAlign: 'center',
-        padding: 10,
         fontFamily: 'Jomhuria',
         fontWeight : 'bold',
+        color: 'white',
     };
 
     return (
