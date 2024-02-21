@@ -1,5 +1,5 @@
 from database.supabaseClient import SupabaseClient
-from scraper.database.models import ScraperObject, Item, Store, ItemPrice, Tag, ItemPriceTags
+from database.models import ScraperObject, Item, Store, ItemPrice, Tag, ItemPriceTags
 
 class SupabaseService:
     def __init__(self):

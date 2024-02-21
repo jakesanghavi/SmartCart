@@ -1,6 +1,6 @@
 import pandas as pd
 import re
-from scraper.database.models import ScraperObject
+from database.models import ScraperObject
 
 def parse_string_to_list(string: str):
     """

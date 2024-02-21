@@ -1,10 +1,10 @@
 from database.supabaseService import SupabaseService
 from database.utils import get_scraper_objects
-from scraper.database.models import ScraperObject, Item
+from database.models import ScraperObject, Item
 import pandas as pd
 
 # Read csv
-df: pd.DataFrame = pd.read_csv('./scraper/instacart_scraper_v1_results.csv')
+df: pd.DataFrame = pd.read_csv('./scraper/Giant_Eagle.csv')
 
 objs: list[ScraperObject] = get_scraper_objects(df)
 

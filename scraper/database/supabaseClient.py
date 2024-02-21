@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from supabase import create_client, Client
-from scraper.database.models import Item, Store, Tag, ItemPrice, ItemPriceTags
+from database.models import Item, Store, Tag, ItemPrice, ItemPriceTags
 
 class SupabaseClient:
     def __init__(self):
@@ -56,6 +56,7 @@ class SupabaseClient:
         :param store: Store to insert.
         :return: Result of the insert.
         """
+        print(store.to_dict_no_id())
         result = self.client.table("stores").insert(store.to_dict_no_id()).execute()
         return Store(id=result.data[0]["id"], name=result.data[0]["name"])
     
