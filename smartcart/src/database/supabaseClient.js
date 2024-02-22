@@ -1,13 +1,16 @@
 import { createClient } from "@supabase/supabase-js";
 import dotenv from "dotenv";
 
-dotenv.config();
+// dotenv.config();
+
+// const { env } = process;
+
 
 class SupabaseClient {
   constructor() {
     // Retrieve the environment variables
-    const supabaseUrl = process.env.SUPABASE_URL || "";
-    const supabaseKey = process.env.SUPABASE_KEY || "";
+    const supabaseUrl = process.env.SUPABASE_URL || "https://gbwczxfefgvovfqrhysd.supabase.co";
+    const supabaseKey = process.env.SUPABASE_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdid2N6eGZlZmd2b3ZmcXJoeXNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDcxNjE2MjAsImV4cCI6MjAyMjczNzYyMH0.LBQ2KJW0MqDZIKeHQTgpDBoxfrZ6mxvhg52oJZMYfW4";
 
     // Initialize the Supabase client
     this.client = createClient(supabaseUrl, supabaseKey);
