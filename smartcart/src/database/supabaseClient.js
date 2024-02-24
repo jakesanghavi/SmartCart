@@ -1,14 +1,16 @@
 import { createClient } from "@supabase/supabase-js";
 import dotenv from "dotenv";
 
+// THIS LINE IS CAUSING ISSUES. SOMEBODY PLEASE FIX THIS TO FIX THE .env PROBLEMS
 // dotenv.config();
-
-// const { env } = process;
-
 
 class SupabaseClient {
   constructor() {
     // Retrieve the environment variables
+    /*
+    SOMEONE PLEASE FIX THIS SO IT CAN PROPERLY FETCH FROM .env FILE!!!
+    Right now that does not work, so it has to fall back on manual definitions.
+    */
     const supabaseUrl = process.env.SUPABASE_URL || "https://gbwczxfefgvovfqrhysd.supabase.co";
     const supabaseKey = process.env.SUPABASE_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdid2N6eGZlZmd2b3ZmcXJoeXNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDcxNjE2MjAsImV4cCI6MjAyMjczNzYyMH0.LBQ2KJW0MqDZIKeHQTgpDBoxfrZ6mxvhg52oJZMYfW4";
 

@@ -4,7 +4,14 @@ import { supabaseService} from '../database/supabaseService.js';
 const SearchBarIcon = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    // The maximum number of items a search query will return
+    // Note: if there are no good matches, nothing comes up, and the styling looks bad
+    // WE SHOULD FIX THIS SOMEHOW!
+    const maxItems = 10
 
+    // When the user searches, query the DB to find the most relevant results
+    // MAYBE WE SHOULD LOOK INTO MAKING A LIST OF MORE GENERIC ITEMS
+    // The results are often hyper-specific to brands/stores
     useEffect(() => {
         const fetchData = async () => {
             const results = await supabaseService.getItemsForSearchTerm(searchTerm);
@@ -25,6 +32,7 @@ const SearchBarIcon = () => {
         justifyContent: 'center',
         alignItems: 'center',
     };
+
     const innerContainerStyle = {
         backgroundColor: '#D9D9D9',
         padding: '10px',
@@ -69,11 +77,12 @@ const SearchBarIcon = () => {
                 />
             </div>
 
-            {/* List of Related Items */}
+            {/* List of related items. Only displays up to maxItems results, 
+                and shows no results when query is empty.*/}
             {searchTerm &&
                 <div style={listContainerStyle}>
                     <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                        {searchResults.slice(0, 10).map((item, index) => (
+                        {searchResults.slice(0, maxItems).map((item, index) => (
                             <li key={index} style={listItemStyle}>
                                 {item.name}
                             </li>

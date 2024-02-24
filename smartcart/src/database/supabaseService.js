@@ -45,6 +45,10 @@ class SupabaseService {
     return items;
   }
 }
+
+// Initialize an instance of the class and export that
+// This prevents recreating a SuperbaseService with each
+// component re-render.
 const supabaseService = new SupabaseService();
 
 export { supabaseService };
