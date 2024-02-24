@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { SupabaseService } from '../database/supabaseService.js';
+import { supabaseService} from '../database/supabaseService.js';
 
 const SearchBarIcon = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-
-    const supabaseService = new SupabaseService();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -67,19 +65,22 @@ const SearchBarIcon = () => {
                 <img
                     src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/search-icon.png"
                     style={{ width: 100, height: 'auto', padding: '10px', float: 'right' }}
+                    alt="Magnifying Glass Icon"
                 />
             </div>
 
             {/* List of Related Items */}
-            <div style={listContainerStyle}>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {searchResults.slice(0, 10).map((item, index) => (
-                        <li key={index} style={listItemStyle}>
-                            {item.name}
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            {searchTerm &&
+                <div style={listContainerStyle}>
+                    <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                        {searchResults.slice(0, 10).map((item, index) => (
+                            <li key={index} style={listItemStyle}>
+                                {item.name}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            }
         </div>
     );
 };

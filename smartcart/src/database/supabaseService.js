@@ -45,5 +45,6 @@ class SupabaseService {
     return items;
   }
 }
+const supabaseService = new SupabaseService();
 
-export { SupabaseService };
+export { supabaseService };
