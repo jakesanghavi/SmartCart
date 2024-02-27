@@ -15,7 +15,7 @@ pip install python-dotenv
 
 ## Future Changes:
 
-Downgrading react-scripts to 4.0.3 resolves the process.env issues AND removes the need for changing webpack.config.js fallback options.
+Downgrading `react-scripts` to 4.0.3 resolves the process.env issues AND removes the need for changing webpack.config.js fallback options.
 It does require deleting package-lock.json and node_modules though, and then proceeding to do a new npm install.
 
 We can make our migration to this new react-scripts version after the demo.
