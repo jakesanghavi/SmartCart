@@ -1,32 +1,29 @@
-import './App.css';
-import CartIcon from './components/CartIcon.js';
-import Logo from './components/Logo.js';
-import SearchBarIcon from './components/SearchBarIcon.js';
-import HomeScreen from './screens/HomeScreen.js';
+import "./App.css";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Routes,
+} from "react-router-dom";
+import HomePage from "./pages/HomePage.js";
+import CartPage from "./pages/CartPage.js";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header"
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'flex-start',
-          padding: '20px',
-          backgroundColor: '#3BB6EB',
-        }}
-      >
-      <div>
-        <Logo/>
-        <div style = {{marginTop: '100px', marginLeft: '150px'}}>
-          <SearchBarIcon/>
-        </div>
-      </div>
-      <div style = {{alignSelf: 'center', display: 'flex', justifyContent: 'center', marginRight: '100px'}}>
-        <CartIcon/>
-      </div>
-      </header>
+    <div
+      className="App"
+      style={{
+        height: "100vh",
+        width: "100vw",
+        flex: 1,
+      }}
+    >
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/Cart" element={<CartPage />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
