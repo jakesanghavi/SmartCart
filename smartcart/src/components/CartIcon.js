@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CartIcon = () => {
+  const navigate = useNavigate(); // Hook to get navigate function
+
   const containerStyle = {
     backgroundColor: "#0A6D20",
     padding: 10,
@@ -34,8 +37,12 @@ const CartIcon = () => {
     flex: 1,
   };
 
+  const handleClick = () => {
+    navigate("/cart");
+  };
+
   return (
-    <div style={containerStyle}>
+    <div style={containerStyle} onClick={handleClick}>
       <div style={textStyle}>
         <p>Cart</p>
       </div>
