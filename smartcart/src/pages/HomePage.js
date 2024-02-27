@@ -34,8 +34,11 @@ const HomePage = () => {
       {/* Search Bar */}
       <div
         style={{
+          width: "100%",
+          paddingTop: "15%",
           justifyContent: "center",
           alignItems: "center",
+          display: "flex",
         }}
       >
         <SearchBarIcon />

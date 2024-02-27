@@ -27,6 +27,7 @@ const SearchBarIcon = () => {
     padding: "10px",
     borderRadius: "30px",
     width: 800,
+    maxWidth: "80%",
     flexDirection: "column",
     display: "flex",
     justifyContent: "center",
@@ -34,10 +35,11 @@ const SearchBarIcon = () => {
   };
 
   const innerContainerStyle = {
+    borderSizing: "border-box",
     backgroundColor: "#D9D9D9",
     padding: "10px",
     borderRadius: "30px",
-    width: 780,
+    width: "100%",
     flexDirection: "row",
     display: "flex",
     justifyContent: "center",
