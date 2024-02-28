@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const CartIcon = () => {
@@ -50,6 +50,7 @@ const CartIcon = () => {
         <img
           src="https://cdn-icons-png.flaticon.com/512/1413/1413908.png"
           style={iconStyle}
+          alt="Shopping Cart Icons"
         />
       </div>
     </div>
