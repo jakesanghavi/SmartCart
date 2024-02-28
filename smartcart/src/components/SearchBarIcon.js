@@ -39,7 +39,7 @@ const SearchBarIcon = () => {
     backgroundColor: "#D9D9D9",
     padding: "10px",
     borderRadius: "30px",
-    width: "100%",
+    width: "97%",
     flexDirection: "row",
     display: "flex",
     justifyContent: "center",
