@@ -55,18 +55,24 @@ const SearchBarIcon = () => {
     marginTop: "10px",
   };
 
-    const listItemStyle = {
-        borderBottom: '1px solid #e0e0e0',
-        padding: '8px',
-        color: 'black',
-        cursor: 'pointer',
-    };
+  const listItemStyle = {
+    borderBottom: "1px solid #e0e0e0",
+    padding: "8px",
+    color: "black",
+    cursor: "pointer",
+  };
 
-    const handleItemClick = (itemName) => {
-        // You can implement the logic to add the clicked item to the user's cart here
-        console.log(`Item clicked: ${itemName}`);
-        // Add your cart logic here (e.g., saving to state, database, etc.)
-      };
+  const handleItemClick = (item) => {
+    let items = JSON.parse(localStorage.getItem("Items"));
+    if (!items) {
+      items = [];
+    }
+
+    items.push(item);
+
+    localStorage.setItem("Items", JSON.stringify(items));
+    console.log(localStorage.getItem("Items"));
+  };
 
   return (
     <div style={outerContainerStyle}>
@@ -93,19 +99,23 @@ const SearchBarIcon = () => {
 
       {/* List of related items. Only displays up to maxItems results, 
                 and shows no results when query is empty.*/}
-            {searchTerm &&
-                <div style={listContainerStyle}>
-                    <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                        {searchResults.slice(0, maxItems).map((item, index) => (
-                            <li key={index} style={listItemStyle} onClick={() => handleItemClick(item.name)}>
-                                {item.name}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            }
+      {searchTerm && (
+        <div style={listContainerStyle}>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            {searchResults.slice(0, maxItems).map((item, index) => (
+              <li
+                key={index}
+                style={listItemStyle}
+                onClick={() => handleItemClick(item)}
+              >
+                {item.name}
+              </li>
+            ))}
+          </ul>
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
 export default SearchBarIcon;
