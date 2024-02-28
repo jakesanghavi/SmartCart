@@ -1,8 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import dotenv from "dotenv";
-
-// THIS LINE IS CAUSING ISSUES. SOMEBODY PLEASE FIX THIS TO FIX THE .env PROBLEMS
-// dotenv.config();
+import { SUPABASE_KEY, SUPABASE_URL } from "../constants.js"; // Adjust the path as needed
 
 class SupabaseClient {
   constructor() {
@@ -11,10 +8,11 @@ class SupabaseClient {
     SOMEONE PLEASE FIX THIS SO IT CAN PROPERLY FETCH FROM .env FILE!!!
     Right now that does not work, so it has to fall back on manual definitions.
     */
-    const supabaseUrl = process.env.SUPABASE_URL || "https://gbwczxfefgvovfqrhysd.supabase.co";
-    const supabaseKey = process.env.SUPABASE_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdid2N6eGZlZmd2b3ZmcXJoeXNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDcxNjE2MjAsImV4cCI6MjAyMjczNzYyMH0.LBQ2KJW0MqDZIKeHQTgpDBoxfrZ6mxvhg52oJZMYfW4";
+    const supabaseUrl = SUPABASE_URL;
+    const supabaseKey = SUPABASE_KEY;
 
     // Initialize the Supabase client
+    console.log("supabaseUrl:", supabaseUrl);
     this.client = createClient(supabaseUrl, supabaseKey);
   }
 
