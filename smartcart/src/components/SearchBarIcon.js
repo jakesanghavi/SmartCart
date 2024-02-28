@@ -57,7 +57,14 @@ const SearchBarIcon = () => {
         borderBottom: '1px solid #e0e0e0',
         padding: '8px',
         color: 'black',
+        cursor: 'pointer',
     };
+
+    const handleItemClick = (itemName) => {
+        // You can implement the logic to add the clicked item to the user's cart here
+        console.log(`Item clicked: ${itemName}`);
+        // Add your cart logic here (e.g., saving to state, database, etc.)
+      };
 
     return (
         <div style={outerContainerStyle}>
@@ -83,7 +90,7 @@ const SearchBarIcon = () => {
                 <div style={listContainerStyle}>
                     <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                         {searchResults.slice(0, maxItems).map((item, index) => (
-                            <li key={index} style={listItemStyle}>
+                            <li key={index} style={listItemStyle} onClick={() => handleItemClick(item.name)}>
                                 {item.name}
                             </li>
                         ))}
