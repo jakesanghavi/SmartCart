@@ -1,32 +1,39 @@
-import React, {Component} from 'react';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Logo = () => {
-    const containerStyle = {
-        backgroundColor: '#0A6D20',
-        padding: '10px',
-        borderRadius: '30px',
-        width: 300,
-        height: 150,
-        flexDirection: 'row',
-        display : 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-    };
-    const textStyle = {
-        fontSize: 60,
-        textAlign: 'center',
-        fontFamily: 'Jomhuria',
-        fontWeight : 'bold',
-        color: 'white',
-    };
+  const navigate = useNavigate(); // Hook to get navigate function
 
-    return (
-        <div style = {containerStyle}>
-            <div style={textStyle}>
-                <p>$martCart</p>
-            </div>
-        </div>
-        );
-    }
+  const containerStyle = {
+    backgroundColor: "#0A6D20",
+    padding: "10px",
+    borderRadius: "30px",
+    width: 300,
+    height: "100%",
+    flexDirection: "row",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
+  const textStyle = {
+    fontSize: 55,
+    textAlign: "center",
+    fontFamily: "Jomhuria",
+    fontWeight: "bold",
+    color: "white",
+  };
+
+  const handleClick = () => {
+    navigate("/");
+  };
+
+  return (
+    <div style={containerStyle} onClick={handleClick}>
+      <div style={textStyle}>
+        <p>$martCart</p>
+      </div>
+    </div>
+  );
+};
 
 export default Logo;

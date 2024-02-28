@@ -1,57 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import { supabaseService} from '../database/supabaseService.js';
+import React, { useState, useEffect } from "react";
+import { supabaseService } from "../database/supabaseService.js";
 
 const SearchBarIcon = () => {
-    const [searchResults, setSearchResults] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
-    // The maximum number of items a search query will return
-    // Note: if there are no good matches, nothing comes up, and the styling looks bad
-    // WE SHOULD FIX THIS SOMEHOW!
-    const maxItems = 10
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  // The maximum number of items a search query will return
+  // Note: if there are no good matches, nothing comes up, and the styling looks bad
+  // WE SHOULD FIX THIS SOMEHOW!
+  const maxItems = 10;
 
-    // When the user searches, query the DB to find the most relevant results
-    // MAYBE WE SHOULD LOOK INTO MAKING A LIST OF MORE GENERIC ITEMS
-    // The results are often hyper-specific to brands/stores
-    useEffect(() => {
-        const fetchData = async () => {
-            const results = await supabaseService.getItemsForSearchTerm(searchTerm);
-            setSearchResults(results);
-        };
-
-        fetchData();
-    }, [searchTerm]);
-
-    // Parent container styles
-    const outerContainerStyle = {
-        backgroundColor: '#0A6D20',
-        padding: '10px',
-        borderRadius: '30px',
-        width: 800,
-        flexDirection: 'column',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+  // When the user searches, query the DB to find the most relevant results
+  // MAYBE WE SHOULD LOOK INTO MAKING A LIST OF MORE GENERIC ITEMS
+  // The results are often hyper-specific to brands/stores
+  useEffect(() => {
+    const fetchData = async () => {
+      const results = await supabaseService.getItemsForSearchTerm(searchTerm);
+      setSearchResults(results);
     };
 
-    const innerContainerStyle = {
-        backgroundColor: '#D9D9D9',
-        padding: '10px',
-        borderRadius: '30px',
-        width: 780,
-        flexDirection: 'row',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-    };
+    fetchData();
+  }, [searchTerm]);
 
-    // List container styles
-    const listContainerStyle = {
-        backgroundColor: '#ffffff',
-        boxShadow: '0px 8px 16px rgba(0, 0, 0, 0.1)',
-        borderRadius: '4px',
-        padding: '10px',
-        marginTop: '10px',
-    };
+  // Parent container styles
+  const outerContainerStyle = {
+    backgroundColor: "#0A6D20",
+    padding: "10px",
+    borderRadius: "30px",
+    width: 800,
+    maxWidth: "80%",
+    flexDirection: "column",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
+
+  const innerContainerStyle = {
+    borderSizing: "border-box",
+    backgroundColor: "#D9D9D9",
+    padding: "10px",
+    borderRadius: "30px",
+    width: "100%",
+    flexDirection: "row",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
+
+  // List container styles
+  const listContainerStyle = {
+    backgroundColor: "#ffffff",
+    boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.1)",
+    borderRadius: "4px",
+    padding: "10px",
+    marginTop: "10px",
+  };
 
     const listItemStyle = {
         borderBottom: '1px solid #e0e0e0',
@@ -66,25 +68,30 @@ const SearchBarIcon = () => {
         // Add your cart logic here (e.g., saving to state, database, etc.)
       };
 
-    return (
-        <div style={outerContainerStyle}>
-            <div style={innerContainerStyle}>
-                <input
-                    type="text"
-                    id="search"
-                    name="search"
-                    style={{ width: 700, height: 100, fontSize: 50 }}
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <img
-                    src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/search-icon.png"
-                    style={{ width: 100, height: 'auto', padding: '10px', float: 'right' }}
-                    alt="Magnifying Glass Icon"
-                />
-            </div>
+  return (
+    <div style={outerContainerStyle}>
+      <div style={innerContainerStyle}>
+        <input
+          type="text"
+          id="search"
+          name="search"
+          style={{ width: 700, height: 100, fontSize: 50 }}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <img
+          src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/search-icon.png"
+          style={{
+            width: 100,
+            height: "auto",
+            padding: "10px",
+            float: "right",
+          }}
+          alt="Magnifying Glass Icon"
+        />
+      </div>
 
-            {/* List of related items. Only displays up to maxItems results, 
+      {/* List of related items. Only displays up to maxItems results, 
                 and shows no results when query is empty.*/}
             {searchTerm &&
                 <div style={listContainerStyle}>
@@ -102,4 +109,3 @@ const SearchBarIcon = () => {
 };
 
 export default SearchBarIcon;
-
