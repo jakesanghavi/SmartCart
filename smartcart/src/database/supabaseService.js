@@ -18,7 +18,6 @@ class SupabaseService {
       "name",
       `%${searchTerm}%`
     );
-
     // calculate score for each item
     items.forEach((item) => {
       // Value 0 to 1 based on similarity of letters
