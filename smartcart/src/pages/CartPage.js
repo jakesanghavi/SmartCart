@@ -1,4 +1,5 @@
 import "../App.css";
+import ShoppingCartBox from "../components/ShoppingCartBox.js";
 
 const CartPage = () => {
   return (
@@ -11,7 +12,9 @@ const CartPage = () => {
         alignItems: "flex-start",
         backgroundColor: "#3BB6EB",
       }}
-    ></div>
+    >
+      <ShoppingCartBox/>
+    </div>
   );
 };
 
