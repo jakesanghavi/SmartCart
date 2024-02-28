@@ -1,7 +1,14 @@
 import "../App.css";
 import ShoppingCartBox from "../components/ShoppingCartBox.js";
+import { useEffect } from "react";
 
 const CartPage = () => {
+  let items = JSON.parse(localStorage.getItem("Items"));
+
+  useEffect(() => {
+    items = JSON.parse(localStorage.getItem("Items"));
+  }, []);
+
   return (
     <div
       className="CartScreen"
@@ -13,7 +20,7 @@ const CartPage = () => {
         backgroundColor: "#3BB6EB",
       }}
     >
-      <ShoppingCartBox/>
+      <ShoppingCartBox items={items} />
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { supabaseService } from "../database/supabaseService.js";
 
-const SearchBarIcon = () => {
+const SearchBarIcon = ({ setCartCount }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
   // The maximum number of items a search query will return
   // Note: if there are no good matches, nothing comes up, and the styling looks bad
   // WE SHOULD FIX THIS SOMEHOW!
@@ -72,6 +73,7 @@ const SearchBarIcon = () => {
 
     localStorage.setItem("Items", JSON.stringify(items));
     console.log(localStorage.getItem("Items"));
+    setCartCount(items.length);
   };
 
   return (

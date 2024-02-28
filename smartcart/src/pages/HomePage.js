@@ -2,8 +2,13 @@ import "../App.css";
 import CartIcon from "../components/CartIcon.js";
 import Logo from "../components/Logo.js";
 import SearchBarIcon from "../components/SearchBarIcon.js";
+import { useState } from "react";
 
 const HomePage = () => {
+  const [cartCount, setCartCount] = useState(
+    JSON.parse(localStorage.getItem("Items")).length || 0
+  );
+
   return (
     <div
       className="HomeScreen"
@@ -29,7 +34,7 @@ const HomePage = () => {
         }}
       >
         <Logo />
-        <CartIcon />
+        <CartIcon cartCount={cartCount} />
       </div>
       {/* Search Bar */}
       <div
@@ -41,7 +46,7 @@ const HomePage = () => {
           display: "flex",
         }}
       >
-        <SearchBarIcon />
+        <SearchBarIcon setCartCount={setCartCount} />
       </div>
     </div>
   );

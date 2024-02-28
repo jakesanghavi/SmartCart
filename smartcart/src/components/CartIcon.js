@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const CartIcon = () => {
-  var cartCount = 0;
+const CartIcon = ({ cartCount }) => {
   const navigate = useNavigate(); // Hook to get navigate function
 
   const containerStyle = {
@@ -27,32 +26,32 @@ const CartIcon = () => {
   };
   const cartQuantityStyle = {
     fontSize: 50,
-    textAlign: 'right',
-    fontFamily: 'Courier',
-    fontWeight : 'bold',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: 'white',
-    height: '50px',
+    textAlign: "right",
+    fontFamily: "Courier",
+    fontWeight: "bold",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "white",
+    height: "50px",
   };
   const cartContainerStyle = {
     width: 100,
     height: "auto",
     padding: "10px",
-  }
+  };
 
-// return (
-// <div style = {containerStyle}>
-//     <div style={cartTextStyle}>
-//         <p>Cart</p>
-//     </div>
-//     <div style = {cartContainerStyle}>
-//         <img src="https://cdn-icons-png.flaticon.com/512/1413/1413908.png" style={iconStyle}/>
-//     <div style = {cartQuantityStyle}>
-//         <p>{cartCount}</p>
-//     </div>
-//     </div>
+  // return (
+  // <div style = {containerStyle}>
+  //     <div style={cartTextStyle}>
+  //         <p>Cart</p>
+  //     </div>
+  //     <div style = {cartContainerStyle}>
+  //         <img src="https://cdn-icons-png.flaticon.com/512/1413/1413908.png" style={iconStyle}/>
+  //     <div style = {cartQuantityStyle}>
+  //         <p>{cartCount}</p>
+  //     </div>
+  //     </div>
 
   const handleClick = () => {
     navigate("/cart");
@@ -61,14 +60,14 @@ const CartIcon = () => {
   return (
     <div style={containerStyle} onClick={handleClick}>
       <div style={cartContainerStyle}>
-      <img
+        <img
           src="https://cdn-icons-png.flaticon.com/512/1413/1413908.png"
           style={iconStyle}
           alt="Shopping Cart Icons"
         />
       </div>
       <div>
-        <div style = {cartQuantityStyle}>
+        <div style={cartQuantityStyle}>
           <p>{cartCount}</p>
         </div>
       </div>
