@@ -3,11 +3,8 @@ import ShoppingCartBox from "../components/ShoppingCartBox.js";
 import { useEffect } from "react";
 
 const CartPage = () => {
-  let items = JSON.parse(localStorage.getItem("Items"));
-
-  useEffect(() => {
-    items = JSON.parse(localStorage.getItem("Items"));
-  }, []);
+  let items = localStorage.getItem("Items");
+  items = items ? JSON.parse(items) : [];
 
   return (
     <div

@@ -5,8 +5,9 @@ import SearchBarIcon from "../components/SearchBarIcon.js";
 import { useState } from "react";
 
 const HomePage = () => {
+  const items = localStorage.getItem("Items");
   const [cartCount, setCartCount] = useState(
-    JSON.parse(localStorage.getItem("Items")).length || 0
+    items ? JSON.parse(items).length : 0
   );
 
   return (

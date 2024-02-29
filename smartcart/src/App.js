@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage.js";
 import CartPage from "./pages/CartPage.js";
 
 function App() {
+  localStorage.removeItem("Items");
   return (
     <div
       className="App"
