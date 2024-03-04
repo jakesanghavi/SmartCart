@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { supabaseService } from "../database/supabaseService.js";
 
-const SearchBarIcon = () => {
+const SearchBarIcon = ({ setCartCount }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
   // The maximum number of items a search query will return
   // Note: if there are no good matches, nothing comes up, and the styling looks bad
   // WE SHOULD FIX THIS SOMEHOW!
@@ -39,7 +40,7 @@ const SearchBarIcon = () => {
     backgroundColor: "#D9D9D9",
     padding: "10px",
     borderRadius: "30px",
-    width: "100%",
+    width: "97%",
     flexDirection: "row",
     display: "flex",
     justifyContent: "center",
@@ -59,6 +60,20 @@ const SearchBarIcon = () => {
     borderBottom: "1px solid #e0e0e0",
     padding: "8px",
     color: "black",
+    cursor: "pointer",
+  };
+
+  const handleItemClick = (item) => {
+    let items = JSON.parse(localStorage.getItem("Items"));
+    if (!items) {
+      items = [];
+    }
+
+    items.push(item);
+
+    localStorage.setItem("Items", JSON.stringify(items));
+    console.log(localStorage.getItem("Items"));
+    setCartCount(items.length);
   };
 
   return (
@@ -90,7 +105,11 @@ const SearchBarIcon = () => {
         <div style={listContainerStyle}>
           <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
             {searchResults.slice(0, maxItems).map((item, index) => (
-              <li key={index} style={listItemStyle}>
+              <li
+                key={index}
+                style={listItemStyle}
+                onClick={() => handleItemClick(item)}
+              >
                 {item.name}
               </li>
             ))}
