@@ -1,7 +1,6 @@
 import "../App.css";
 import ShoppingCartBox from "../components/ShoppingCartBox.js";
 import TotalCalculator from "../components/TotalCalculator.js";
-import { useEffect } from "react";
 
 const CartPage = () => {
   let items = localStorage.getItem("Items");

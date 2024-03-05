@@ -44,6 +44,7 @@ class SupabaseService {
     return items;
   }
 
+  // Get all stores names and IDs from the database
   async getStoreNames() {
     let data = "";
     await this.client.client
@@ -55,6 +56,7 @@ class SupabaseService {
     return data.data;
   }
 
+  // Get all items offered by a given store (by ID)
   async storeItems(id) {
     let data = "";
     await this.client.client
@@ -68,7 +70,6 @@ class SupabaseService {
     
     return data.data;
   }
-
 }
 
 // Initialize an instance of the class and export that
