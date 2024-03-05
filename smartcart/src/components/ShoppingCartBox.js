@@ -1,14 +1,22 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
+import DeleteIcon from "../components/DeleteIcon.js";
 
 const ShoppingCartBox = ({
-  items,
+  items: propItems,
   width = 500,
   height = 500,
   fontSize = 30,
 }) => {
 
   const navigate = useNavigate();
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const storedItems = localStorage.getItem("Items");
+    setItems(storedItems ? JSON.parse(storedItems) : []);
+  }, []);
+
 
   const containerStyle = {
     width: '100vw',
@@ -71,6 +79,18 @@ const ShoppingCartBox = ({
     navigate("/");
   };
 
+  const deleteItem = (index) => {
+    console.log("Deleting item at index", index);
+
+    // Avoid modifying the original state directly
+    const updatedItems = items.slice();
+    updatedItems.splice(index, 1);
+    setItems(updatedItems);
+
+    // Update localStorage with the new array
+    localStorage.setItem("Items", JSON.stringify(updatedItems));
+  };
+
   return (
     <div style = {containerStyle}>
       <div style={backButtonContainerStyle} onClick = {handleClick}>
@@ -83,8 +103,9 @@ const ShoppingCartBox = ({
           </div>
           <div style={textStyle}>
             {items.map((item, index) => (
-              <div key={index}>
-                {item.name} {/* Render other item properties as needed */}
+              <div key={index} style={{ display: "flex", alignItems: "center" }}>
+                <p style={{ margin: 0, marginRight: "10px" }}>{item.name}</p>
+                <DeleteIcon deleteItem={() => deleteItem(index)} />
               </div>
             ))}{" "}
           </div>
