@@ -7,6 +7,7 @@ const DeleteIcon = ({ deleteItem }) => {
         padding: "10px",
         float: "right",
         flex: 1,
+        cursor: "pointer",
     };
     
     return (
