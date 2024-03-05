@@ -52,11 +52,18 @@ const ShoppingCartBox = ({
     justifyContent: "flex-start",
     alignItems: "center",
   };
-  const textStyle = {
-    fontSize: `${fontSize}px`,
-    fontFamily: "Jomhuria",
+  const titleTextStyle = {
+    fontSize: `${fontSize + 20}px`,
+    fontFamily: "Courier",
     fontWeight: "bold",
     color: "black",
+    marginTop: "10px",
+  };
+  const textStyle = {
+    fontSize: `${fontSize}px`,
+    fontFamily: "Courier",
+    color: "black",
+    fontWeight: "bold",
     marginTop: "10px",
   };
 
@@ -71,8 +78,10 @@ const ShoppingCartBox = ({
       </div>
       <div style={outerContainerStyle}>
         <div style={innerContainerStyle}>
-          <div style={textStyle}>
+          <div style={titleTextStyle}>
             <p style={{ margin: 0 }}>Shopping Cart</p>
+          </div>
+          <div style={textStyle}>
             {items.map((item, index) => (
               <div key={index}>
                 {item.name} {/* Render other item properties as needed */}
