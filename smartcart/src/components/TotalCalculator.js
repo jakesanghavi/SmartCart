@@ -169,6 +169,7 @@ const TotalCalculator = ({
         fontWeight: "bold",
         color: "black",
         marginTop: "10px",
+        textAlign: "center"
       };
       const textStyle = {
         fontSize: `${fontSize}px`,
