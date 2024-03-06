@@ -1,5 +1,6 @@
 import "../App.css";
 import ShoppingCartBox from "../components/ShoppingCartBox.js";
+import TotalCalculator from "../components/TotalCalculator.js";
 
 const CartPage = () => {
   let items = localStorage.getItem("Items");
@@ -16,7 +17,8 @@ const CartPage = () => {
         backgroundColor: "#3BB6EB",
       }}
     >
-      <ShoppingCartBox items={items}/>
+      <ShoppingCartBox items={items} />
+      <TotalCalculator items={items}/>
     </div>
   );
 };
