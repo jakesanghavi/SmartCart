@@ -163,20 +163,28 @@ const TotalCalculator = ({
         justifyContent: "flex-start",
         alignItems: "center",
     };
-    const textStyle = {
-        fontSize: `${fontSize}px`,
-        fontFamily: "Jomhuria",
+    const titleTextStyle = {
+        fontSize: `${fontSize + 20}px`,
+        fontFamily: "Courier",
         fontWeight: "bold",
         color: "black",
         marginTop: "10px",
-    };
+      };
+      const textStyle = {
+        fontSize: `${fontSize}px`,
+        fontFamily: "Courier",
+        color: "black",
+        fontWeight: "bold",
+        marginTop: "10px",
+        textAlign: "right"
+      };
 
     return (
         <div style={containerStyle}>
             <div style={outerContainerStyle}>
                 <div style={innerContainerStyle}>
                     <div style={textStyle}>
-                        <p style={{ margin: 0 }}>Cheapest Store Recommendations</p>
+                        <p style={titleTextStyle}>Cheapest Store Recommendations</p>
                         {items.length === 0 ? (
                             // Case 1: items has 0 length, show nothing
                             null
