@@ -1,10 +1,10 @@
+import React, {useState} from "react";
 import "../App.css";
 import ShoppingCartBox from "../components/ShoppingCartBox.js";
 import TotalCalculator from "../components/TotalCalculator.js";
 
 const CartPage = () => {
-  let items = localStorage.getItem("Items");
-  items = items ? JSON.parse(items) : [];
+  const [items, setItems] = useState(localStorage.getItem("Items") ? JSON.parse(localStorage.getItem("Items")) : []);
 
   return (
     <div
@@ -17,7 +17,7 @@ const CartPage = () => {
         backgroundColor: "#3BB6EB",
       }}
     >
-      <ShoppingCartBox items={items} />
+      <ShoppingCartBox items={items} setItems={setItems}/>
       <TotalCalculator items={items}/>
     </div>
   );

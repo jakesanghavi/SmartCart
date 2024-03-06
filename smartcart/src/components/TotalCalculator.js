@@ -59,6 +59,7 @@ const TotalCalculator = ({
         // Function to get the most similar items at EACH store for EACH item in the cart
         async function getSim() {
             // Don't run anything if nothing is in the cart
+            setStoreList(null)
             if (items.length > 0) {
                 // Get the names of stores from the DB
                 let stores = await getStoreNames()
