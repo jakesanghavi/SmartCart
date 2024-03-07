@@ -1,20 +1,20 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from "../components/DeleteIcon.js";
 
 const ShoppingCartBox = ({
-  items: propItems,
+  items,
+  setItems,
   width = 500,
   height = 500,
   fontSize = 30,
 }) => {
 
   const navigate = useNavigate();
-  const [items, setItems] = useState([]);
 
   useEffect(() => {
     const storedItems = localStorage.getItem("Items");
-    setItems(storedItems ? JSON.parse(storedItems) : []);
+    items = storedItems ? JSON.parse(storedItems) : [];
   }, []);
 
 
@@ -81,11 +81,14 @@ const ShoppingCartBox = ({
 
   const deleteItem = (index) => {
     console.log("Deleting item at index", index);
+    console.log(items)
 
     // Avoid modifying the original state directly
     const updatedItems = items.slice();
     updatedItems.splice(index, 1);
-    setItems(updatedItems);
+    // console.log(updatedItems)
+    // items = updatedItems;
+    setItems(updatedItems)
 
     // Update localStorage with the new array
     localStorage.setItem("Items", JSON.stringify(updatedItems));

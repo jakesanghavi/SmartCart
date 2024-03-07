@@ -43,6 +43,33 @@ class SupabaseService {
 
     return items;
   }
+
+  // Get all stores names and IDs from the database
+  async getStoreNames() {
+    let data = "";
+    await this.client.client
+                .from('stores')
+                .select('*').then(response => {
+                  data = response
+                });
+
+    return data.data;
+  }
+
+  // Get all items offered by a given store (by ID)
+  async storeItems(id) {
+    let data = "";
+    await this.client.client
+                .from('item_prices')
+                .select('*')
+                .eq('store_id', id)
+                .select('items(id, name), *')
+                .then(response => {
+                  data = response
+                });
+    
+    return data.data;
+  }
 }
 
 // Initialize an instance of the class and export that
