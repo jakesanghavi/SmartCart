@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./ResultsItem.styles.js";
 
 const ResultsItem = ({ item, setCartCount, searchTerm }) => {
+  const [isHovered, setIsHovered] = useState(false); // Add this line
+
   const handleItemClick = (item) => {
     let items = JSON.parse(localStorage.getItem("Items"));
     if (!items) {
@@ -43,8 +45,18 @@ const ResultsItem = ({ item, setCartCount, searchTerm }) => {
     });
   };
 
+  const dynamicContainerStyle = {
+    ...styles.container,
+    ...(isHovered ? styles.containerHovered : {}),
+  };
+
   return (
-    <div style={styles.container} onClick={() => handleItemClick(item)}>
+    <div
+      style={dynamicContainerStyle}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => handleItemClick(item)}
+    >
       {getHighlightedText(item.name.toLowerCase(), searchTerm.toLowerCase())}
     </div>
   );

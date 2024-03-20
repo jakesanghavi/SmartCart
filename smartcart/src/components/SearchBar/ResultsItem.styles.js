@@ -4,6 +4,13 @@ const styles = {
     cursor: "pointer",
     display: "flex",
     maxWidth: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    borderRadius: 5,
+  },
+  containerHovered: {
+    // Define hover styles here
+    backgroundColor: "#f0f0f0",
   },
   text: {
     fontSize: 20,
