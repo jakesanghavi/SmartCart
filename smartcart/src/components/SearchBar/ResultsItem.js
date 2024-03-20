@@ -16,24 +16,28 @@ const ResultsItem = ({ item, setCartCount, searchTerm }) => {
 
   // Function to split item.name into parts based on searchTerm, ensuring all text is lowercase
   const getHighlightedText = (text, highlight) => {
-    // Ensure text is treated as a whole in lowercase for matching purposes
-    const lowerCaseText = text.toLowerCase();
-    const lowerCaseHighlight = highlight.toLowerCase();
+    // Avoid processing if highlight is empty, return the entire text
+    if (!highlight.trim()) {
+      return <span style={styles.text}>{text}</span>;
+    }
 
-    const parts = lowerCaseText.split(
-      new RegExp(`(${lowerCaseHighlight})`, "gi")
-    );
+    const regex = new RegExp(`(${highlight})`, "gi");
+    const parts = text.split(regex);
+
+    // Create a non-breaking space entity for leading or trailing spaces in parts
+    const preserveSpace = (part) => part.replace(/ /g, "\u00A0");
 
     return parts.map((part, i) => {
-      const style =
-        part.toLowerCase() === lowerCaseHighlight
-          ? styles.normalText
-          : styles.boldText;
+      // Check if the part is a highlight
+      const isHighlight = part.toLowerCase() === highlight.toLowerCase();
 
-      // Wrap part in a span, using `pre-wrap` to preserve white spaces and line breaks
+      // Apply normal or bold style based on whether the part matches the highlight
+      const textStyle = isHighlight ? styles.normalText : styles.boldText;
+
+      // Use preserveSpace function to handle leading/trailing spaces
       return (
-        <span key={i} style={{ ...style, ...styles.text }}>
-          {part}
+        <span key={i} style={{ ...textStyle, ...styles.text }}>
+          {isHighlight ? part : preserveSpace(part)}
         </span>
       );
     });
@@ -41,7 +45,7 @@ const ResultsItem = ({ item, setCartCount, searchTerm }) => {
 
   return (
     <div style={styles.container} onClick={() => handleItemClick(item)}>
-      {getHighlightedText(item.name.toLowerCase(), searchTerm)}
+      {getHighlightedText(item.name.toLowerCase(), searchTerm.toLowerCase())}
     </div>
   );
 };

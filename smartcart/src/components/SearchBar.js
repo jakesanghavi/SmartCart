@@ -9,9 +9,7 @@ const SearchBar = ({ setCartCount }) => {
   return (
     <div style={styles.container}>
       <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      {searchTerm && (
-        <ResultsList searchTerm={searchTerm} setCartCount={setCartCount} />
-      )}
+      <ResultsList searchTerm={searchTerm} setCartCount={setCartCount} />
     </div>
   );
 };
