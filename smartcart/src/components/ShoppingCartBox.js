@@ -1,6 +1,9 @@
 import React, {useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from "../components/DeleteIcon.js";
+import IncrementIcon from "../components/IncrementIcon.js";
+import DecrementIcon from "../components/DecrementIcon.js";
+import QuantityDisplay from "../components/QuantityDisplay.js";
 
 const ShoppingCartBox = ({
   items,
@@ -8,14 +11,26 @@ const ShoppingCartBox = ({
   width = 500,
   height = 500,
   fontSize = 30,
+  defaultQuantity = 1,
 }) => {
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const storedItems = localStorage.getItem("Items");
-    items = storedItems ? JSON.parse(storedItems) : [];
+    if (storedItems) {
+      const parsedItems = JSON.parse(storedItems);
+      // Ensure each item has a quantity property
+      const updatedItems = parsedItems.map(item => ({
+        ...item,
+        quantity: item.quantity || defaultQuantity
+      }));
+      setItems(updatedItems);
+    } else {
+      setItems([]);
+    }
   }, []);
+  
 
 
   const containerStyle = {
@@ -94,6 +109,24 @@ const ShoppingCartBox = ({
     localStorage.setItem("Items", JSON.stringify(updatedItems));
   };
 
+  const decrementItem = (index) => {
+    console.log("Decrementing item at index", index);
+    const updatedItems = [...items]; // Create a copy of the array
+    if (updatedItems[index].quantity > 1) { // Ensure quantity is greater than 1
+      updatedItems[index].quantity--; // Decrement quantity by 1
+      setItems(updatedItems);
+      localStorage.setItem("Items", JSON.stringify(updatedItems));
+    }
+  };
+
+  const incrementItem = (index) => {
+    console.log("Incrementing item at index", index);
+    const updatedItems = [...items]; // Create a copy of the array
+    updatedItems[index].quantity++; // Increment quantity by 1
+    setItems(updatedItems);
+    localStorage.setItem("Items", JSON.stringify(updatedItems));
+  };
+
   return (
     <div style = {containerStyle}>
       <div style={backButtonContainerStyle} onClick = {handleClick}>
@@ -109,6 +142,9 @@ const ShoppingCartBox = ({
               <div key={index} style={{ display: "flex", alignItems: "center" }}>
                 <p style={{ margin: 0, marginRight: "10px" }}>{item.name}</p>
                 <DeleteIcon deleteItem={() => deleteItem(index)} />
+                <DecrementIcon decrementItem={() => decrementItem(index)} />
+                <QuantityDisplay quantity={item.quantity} />
+                <IncrementIcon incrementItem={() => incrementItem(index)} />
               </div>
             ))}{" "}
           </div>
