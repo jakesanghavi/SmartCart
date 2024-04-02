@@ -35,8 +35,12 @@ df_singles = df_singles.loc[df_singles['name'] != ''].reset_index(drop=True)
 # Concatenate our two dfs
 df_final = pd.concat([df_singles, df_plurals])
 # Remove any leading/trailing spaces and get rid of any remaining duplicates
+# Also remove hyper-generic names containing other and or
 # Then write to CSV
 df_final['name'] = df_final['name'].str.strip()
+df_final['name'] = df_final.loc[~df_final['name'].str.contains(' or ', na=False)]
+df_final['name'] = df_final.loc[~df_final['name'].str.contains(' other ', na=False)]
+df_final = df_final.dropna()
 df_final = df_final.drop_duplicates().reset_index(drop=True)
 df_final.to_csv('final_generic_items.csv', index=False)
 
