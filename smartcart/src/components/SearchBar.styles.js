@@ -6,6 +6,7 @@ const styles = {
     alignItems: "center",
     width: "100%",
     maxWidth: "700px",
+    position: "relative",
   },
 };
 

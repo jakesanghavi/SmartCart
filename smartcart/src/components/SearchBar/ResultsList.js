@@ -10,6 +10,7 @@ const ResultsList = ({ searchTerm, setCartCount }) => {
   useEffect(() => {
     const fetchData = async () => {
       const results = await supabaseService.getItemsForSearchTerm(searchTerm);
+      console.log(results);
       setSearchResults(results);
     };
     if (searchTerm !== "") {

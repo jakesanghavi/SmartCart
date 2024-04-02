@@ -13,11 +13,9 @@ const HomePage = () => {
   return (
     <div className="HomeScreen" style={styles.container}>
       {/* Header For The Page */}
-      <NavBar cartCount={cartCount} />
+      <NavBar setCartCount={setCartCount} cartCount={cartCount} />
       {/* Search Bar */}
-      <div style={styles.contentContainer}>
-        <SearchBar setCartCount={setCartCount} />
-      </div>
+      <div style={styles.contentContainer}></div>
     </div>
   );
 };

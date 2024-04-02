@@ -27,6 +27,12 @@ const styles = {
     fontWeight: "400",
     color: "#242423",
   },
+  image: {
+    width: 40,
+    height: 40,
+    borderRadius: 5,
+    marginRight: 10,
+  },
 };
 
 export default styles;

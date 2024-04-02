@@ -7,7 +7,7 @@ const styles = {
     height: "100%",
     flexDirection: "row",
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "center",
     float: "right",
     alignItems: "center",
   },
