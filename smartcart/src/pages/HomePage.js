@@ -1,7 +1,8 @@
 import "../App.css";
 import NavBar from "../components/NavBar.js";
 import SearchBar from "../components/SearchBar.js";
-import { useState } from "react";
+import { supabaseService } from "../database/supabaseService.js";
+import { useState, useEffect } from "react";
 import styles from "./HomePage.styles.js";
 
 const HomePage = () => {
@@ -9,7 +10,17 @@ const HomePage = () => {
   const [cartCount, setCartCount] = useState(
     items ? JSON.parse(items).length : 0
   );
+  const [deals, setDeals] = useState([]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const curr_deals = await supabaseService.getDeals();
+      setDeals(curr_deals);
+      console.log(curr_deals);
+    };
+
+    fetchData();
+  }, []);
   return (
     <div className="HomeScreen" style={styles.container}>
       {/* Header For The Page */}
