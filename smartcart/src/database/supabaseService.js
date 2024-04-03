@@ -48,10 +48,11 @@ class SupabaseService {
   async getStoreNames() {
     let data = "";
     await this.client.client
-                .from('stores')
-                .select('*').then(response => {
-                  data = response
-                });
+      .from("stores")
+      .select("*")
+      .then((response) => {
+        data = response;
+      });
 
     return data.data;
   }
@@ -60,15 +61,52 @@ class SupabaseService {
   async storeItems(id) {
     let data = "";
     await this.client.client
-                .from('item_prices')
-                .select('*')
-                .eq('store_id', id)
-                .select('items(id, name), *')
-                .then(response => {
-                  data = response
-                });
-    
+      .from("item_prices")
+      .select("*")
+      .eq("store_id", id)
+      .select("items(id, name), *")
+      .then((response) => {
+        data = response;
+      });
+
     return data.data;
+  }
+
+  async getDeals() {
+    // get all deals
+    // join with item prices
+    return [
+      {
+        id: 1,
+        item_name: "Apple",
+        item_price: 0.99,
+        item_quantity: 1,
+        percent_price_decrease: 0.1,
+        cheaper_than: "1 week ago",
+        image_url:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/1130px-Red_Apple.jpg",
+      },
+      {
+        id: 2,
+        item_name: "Banana",
+        item_price: 0.49,
+        item_quantity: 1,
+        percent_price_decrease: 0.2,
+        cheaper_than: "1 week ago",
+        image_url:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Bananas.jpg/1024px-Bananas.jpg",
+      },
+      {
+        id: 3,
+        item_name: "Orange",
+        item_price: 0.79,
+        item_quantity: 1,
+        percent_price_decrease: 0.15,
+        cheaper_than: "1 week ago",
+        image_url:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Orange-Whole-%26-Split.jpg/1024px-Orange-Whole-%26-Split.jpg",
+      },
+    ];
   }
 }
 
