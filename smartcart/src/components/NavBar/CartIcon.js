@@ -13,13 +13,13 @@ const CartIcon = ({ cartCount }) => {
     <div
       style={{
         ...styles.container,
-        backgroundColor: isHovered ? "#0B8733" : "#0A6D20", // Step 3
+        backgroundColor: isHovered ? "#e0e0e0" : "white", // Step 3
       }}
       onClick={handleClick}
       onMouseEnter={() => setIsHovered(true)} // Step 2
       onMouseLeave={() => setIsHovered(false)} // Step 2
     >
-      <HiShoppingCart size={60} color="white" />
+      <HiShoppingCart size={60} color="#0A6D20" />
       <p
         style={{
           ...styles.text,

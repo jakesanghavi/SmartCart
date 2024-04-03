@@ -1,16 +1,18 @@
 const styles = {
   container: {
-    height: "100vh",
+    height: "100%",
     width: "100vw",
     alignItems: "flex-start",
-    backgroundColor: "#3BB6EB",
+    backgroundColor: "#f0f2f0",
   },
   contentContainer: {
-    width: "100%",
     paddingTop: "15%",
+    margin: 50,
     justifyContent: "center",
     alignItems: "center",
     display: "flex",
+    backgroundColor: "white",
+    borderRadius: 20,
   },
 };
 

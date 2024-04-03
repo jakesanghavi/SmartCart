@@ -16,7 +16,6 @@ const HomePage = () => {
     const fetchData = async () => {
       const curr_deals = await supabaseService.getDeals();
       setDeals(curr_deals);
-      console.log(curr_deals);
     };
 
     fetchData();

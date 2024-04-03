@@ -3,7 +3,7 @@ const styles = {
     boxSizing: "border-box",
     width: "100%",
     height: "125px",
-    backgroundColor: "white",
+    backgroundColor: "#0A6D20",
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",

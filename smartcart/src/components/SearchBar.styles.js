@@ -4,8 +4,8 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    width: "100%",
-    maxWidth: "700px",
+    width: "700px",
+    maxWidth: "50%",
     position: "relative",
   },
 };

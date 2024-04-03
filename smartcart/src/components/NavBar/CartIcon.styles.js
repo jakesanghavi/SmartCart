@@ -17,7 +17,7 @@ const styles = {
     fontWeight: "700",
     justifyContent: "center",
     alignItems: "center",
-    color: "white",
+    color: "#0A6D20",
     paddingLeft: "20px",
   },
 };
