@@ -1,18 +1,28 @@
 const styles = {
   container: {
-    height: "100%",
     width: "100vw",
     alignItems: "flex-start",
     backgroundColor: "#f0f2f0",
   },
   contentContainer: {
-    paddingTop: "15%",
+    paddingLeft: 50,
+    paddingRight: 50,
+    paddingTop: 20,
     margin: 50,
-    justifyContent: "center",
+    justifyContent: "column",
     alignItems: "center",
     display: "flex",
-    backgroundColor: "white",
+    flexDirection: "column",
     borderRadius: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  subtitle: {
+    fontSize: 18,
+    marginBottom: 30,
   },
 };
 

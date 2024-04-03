@@ -4,7 +4,7 @@ import SearchBar from "../components/SearchBar.js";
 import { supabaseService } from "../database/supabaseService.js";
 import { useState, useEffect } from "react";
 import styles from "./HomePage.styles.js";
-import DealsItem from "../components/DealsItem/DealsItem.js";
+import DealsItems from "../components/DealsItem/DealsItems.js";
 
 const HomePage = () => {
   const items = localStorage.getItem("Items");
@@ -28,9 +28,13 @@ const HomePage = () => {
       <NavBar setCartCount={setCartCount} cartCount={cartCount} />
       {/* Search Bar */}
       <div style={styles.contentContainer}>
-        {deals.map((deal, index) => (
-          <DealsItem deal={deal} setCartCount={setCartCount} />
-        ))}
+        <text style={styles.title}>Top Deals Today</text>
+        <text style={styles.subtitle}>These items are cheaper than usual.</text>
+        {deals ? (
+          <DealsItems deals={deals} setCartCount={setCartCount} />
+        ) : (
+          <div />
+        )}
       </div>
     </div>
   );
