@@ -1,6 +1,5 @@
 import "../App.css";
 import NavBar from "../components/NavBar.js";
-import SearchBar from "../components/SearchBar.js";
 import { supabaseService } from "../database/supabaseService.js";
 import { useState, useEffect } from "react";
 import styles from "./HomePage.styles.js";
