@@ -39,7 +39,7 @@ const ResultsItem = ({ item, setCartCount, searchTerm }) => {
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => handleItemClick(item)}
     >
-      <img src={item.url} style={styles.image} />
+      <img src={item.url} style={styles.image} alt='Item Visual' />
       {item.name.toLowerCase()}
     </div>
   );

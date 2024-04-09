@@ -60,7 +60,8 @@ const TotalCalculator = ({
         async function getSim() {
             // Don't run anything if nothing is in the cart
             setStoreList(null)
-            if (items.length > 0) {
+            if (items !== null && items.length > 0) {
+                console.log(items)
                 // Get the names of stores from the DB
                 let stores = await getStoreNames()
 
@@ -72,6 +73,10 @@ const TotalCalculator = ({
                 for (var store in stores) {
                     // Get all items offered by that store
                     var storeItems = await getStoreItems(stores[store].id)
+
+                    if (!storeItems || storeItems.length === 0) {
+                        continue;
+                    }
 
                     // Initialize an empty array for a cart we will make for the user from the specific store
                     // at this stage in the loop
