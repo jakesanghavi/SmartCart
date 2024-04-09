@@ -89,9 +89,10 @@ const TotalCalculator = ({
                         var item_name = mostSimilar.items.name
                         var price = mostSimilar.price
                         var score = mostSimilar.items.score
+                        var quantity = items[item].quantity
 
                         // Append this item actually offered by the store to that stores cart
-                        storeCart.push({ item_name, price, score })
+                        storeCart.push({ item_name, price, score, quantity})
                     }
                     // After iterating over each store, push each stores cart to the overall array
                     storeCarts.push(storeCart)
@@ -111,7 +112,8 @@ const TotalCalculator = ({
 
                     // Iterate over all items in each cart and add to the storePrice
                     for (var storeItem in cartItems) {
-                        storePrice = storePrice + cartItems[storeItem].price
+                        console.log("quantity: " + cartItems[storeItem].quantity);
+                        storePrice = storePrice + cartItems[storeItem].price * cartItems[storeItem].quantity
                     }
                     var storeName = stores[cart].name
 
