@@ -12,7 +12,16 @@ const ResultsItem = ({ item, setCartCount, searchTerm }) => {
       items = [];
     }
 
-    items.push(item);
+    const itemIndex = items.findIndex(existingItem => existingItem.id === item.id);
+
+    if (itemIndex !== -1) {
+      // If the item already exists, increment the quantity of existing item
+      items[itemIndex].quantity += 1;
+    } else {
+      // If the item doesn't exist, add it to the cart
+      item.quantity = 1;
+      items.push(item);
+    }
 
     localStorage.setItem("Items", JSON.stringify(items));
     setCartCount(items.length);
