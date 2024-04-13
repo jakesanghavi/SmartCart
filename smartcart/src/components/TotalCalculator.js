@@ -61,7 +61,6 @@ const TotalCalculator = ({
             // Don't run anything if nothing is in the cart
             setStoreList(null)
             if (items !== null && items.length > 0) {
-                console.log(items)
                 // Get the names of stores from the DB
                 let stores = await getStoreNames()
 
@@ -112,7 +111,6 @@ const TotalCalculator = ({
 
                     // Iterate over all items in each cart and add to the storePrice
                     for (var storeItem in cartItems) {
-                        console.log("quantity: " + cartItems[storeItem].quantity);
                         storePrice = storePrice + cartItems[storeItem].price * cartItems[storeItem].quantity
                     }
                     var storeName = stores[cart].name
