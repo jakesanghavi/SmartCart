@@ -4,7 +4,7 @@ const styles = {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
-    backgroundColor: "#3BB6EB",
+    backgroundColor: "#f0f2f0",
   },
 };
 
