@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { HiPlus, HiCheck } from "react-icons/hi"; // Ensure you have react-icons installed
 import styles from "./DealsItem.styles.js";
+// issue: the deal only corresponds to 1 store, so we do not run all the comparison to add to cart. 
+// we already "searched up" this item and its store, so adding it to the cart is totally different. 
+// perhaps more helpful to also display the store, and not allowing add to cart
 
 const DealsItem = ({ deal, setCartCount }) => {
   const {
     id,
     item_name,
     item_price,
+    store_name,
     item_quantity,
     percent_price_decrease,
     cheaper_than,
@@ -46,8 +50,10 @@ const DealsItem = ({ deal, setCartCount }) => {
 
   return (
     <div style={styles.container}>
-      <img src={image_url} style={styles.image} alt={item_name} />
-      <div style={styles.title}>{item_name}</div>
+       <div style = {styles.title}>{store_name}</div>
+      {<img src={image_url} style={styles.image} alt={store_name} /> }
+      <div style={styles.detail}>{item_name}</div>
+     
       <div style={styles.detail}>
         Price: ${item_price} / {item_quantity} pcs
       </div>
@@ -55,12 +61,12 @@ const DealsItem = ({ deal, setCartCount }) => {
         {(percent_price_decrease * 100).toFixed(0)}% Cheaper!
       </div>
       <div style={styles.cheaperThan}>Than {cheaper_than}</div>
-      <div
+      {/* <div
         onClick={() => handleItemClick(item)}
         style={inCart ? styles.buttonInCart : styles.buttonNotInCart}
       >
         {inCart ? <HiCheck color="white" /> : <HiPlus color="green" />}
-      </div>
+      </div> */}
     </div>
   );
 };
