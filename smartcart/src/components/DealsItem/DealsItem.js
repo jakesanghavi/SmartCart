@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { HiPlus, HiCheck } from "react-icons/hi"; // Ensure you have react-icons installed
+// import React, { useState } from "react";
+// import { HiPlus, HiCheck } from "react-icons/hi"; // Ensure you have react-icons installed
 import styles from "./DealsItem.styles.js";
 // issue: the deal only corresponds to 1 store, so we do not run all the comparison to add to cart. 
 // we already "searched up" this item and its store, so adding it to the cart is totally different. 
@@ -7,7 +7,7 @@ import styles from "./DealsItem.styles.js";
 
 const DealsItem = ({ deal, setCartCount }) => {
   const {
-    id,
+    // id,
     item_name,
     item_price,
     store_name,
@@ -17,36 +17,36 @@ const DealsItem = ({ deal, setCartCount }) => {
     image_url,
   } = deal;
 
-  const item = {
-    id,
-    item_name,
-    item_price,
-    item_quantity,
-    image_url,
-  };
+  // const item = {
+  //   id,
+  //   item_name,
+  //   item_price,
+  //   item_quantity,
+  //   image_url,
+  // };
 
-  const [inCart, setInCart] = useState(false);
+  // const [inCart, setInCart] = useState(false);
 
-  const handleItemClick = (item) => {
-    if (!inCart) {
-      let items = JSON.parse(localStorage.getItem("Items"));
-      if (!items) {
-        items = [];
-      }
+  // const handleItemClick = (item) => {
+  //   if (!inCart) {
+  //     let items = JSON.parse(localStorage.getItem("Items"));
+  //     if (!items) {
+  //       items = [];
+  //     }
 
-      items.push(item);
+  //     items.push(item);
 
-      localStorage.setItem("Items", JSON.stringify(items));
-      setCartCount(items.length);
-      setInCart(true);
-    } else {
-      let items = JSON.parse(localStorage.getItem("Items"));
-      items = items.filter((i) => i.id !== item.id);
-      localStorage.setItem("Items", JSON.stringify(items));
-      setCartCount(items.length);
-      setInCart(false);
-    }
-  };
+  //     localStorage.setItem("Items", JSON.stringify(items));
+  //     setCartCount(items.length);
+  //     setInCart(true);
+  //   } else {
+  //     let items = JSON.parse(localStorage.getItem("Items"));
+  //     items = items.filter((i) => i.id !== item.id);
+  //     localStorage.setItem("Items", JSON.stringify(items));
+  //     setCartCount(items.length);
+  //     setInCart(false);
+  //   }
+  // };
 
   return (
     <div style={styles.container}>
