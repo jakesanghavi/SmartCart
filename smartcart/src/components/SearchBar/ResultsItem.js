@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./ResultsItem.styles.js";
 
-const ResultsItem = ({ item, setCartCount, searchTerm }) => {
+const ResultsItem = ({ item, setCartCount, searchTerm, setItems }) => {
   const [isHovered, setIsHovered] = useState(false); // Add this line
   item.url =
     item.url ||
@@ -12,10 +12,27 @@ const ResultsItem = ({ item, setCartCount, searchTerm }) => {
       items = [];
     }
 
-    items.push(item);
+    const itemIndex = items.findIndex(existingItem => existingItem.id === item.id);
+
+    if (itemIndex !== -1) {
+      // If the item already exists, increment the quantity of existing item
+      items[itemIndex].quantity += 1;
+    } else {
+      // If the item doesn't exist, add it to the cart
+      item.quantity = 1;
+      items.push(item);
+    }
+
+    let quant = 0
+    if (items && items.length > 0) {
+      for (item in items) {
+        quant += items[item].quantity;
+      }
+    }
 
     localStorage.setItem("Items", JSON.stringify(items));
-    setCartCount(items.length);
+    // setItems(items);
+    setCartCount(quant);
   };
 
   const dynamicContainerStyle = {
@@ -30,7 +47,7 @@ const ResultsItem = ({ item, setCartCount, searchTerm }) => {
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => handleItemClick(item)}
     >
-      <img src={item.url} style={styles.image} />
+      <img src={item.url} style={styles.image} alt='Item Visual' />
       {item.name.toLowerCase()}
     </div>
   );

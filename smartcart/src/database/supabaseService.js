@@ -14,7 +14,7 @@ class SupabaseService {
      * @return {Object} Result of the query.
      */
     const items = await this.client.queryTableIlike(
-      "generic_items",
+      "generic_items_with_images",
       "name",
       `%${searchTerm}%`
     );

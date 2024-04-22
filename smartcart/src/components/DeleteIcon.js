@@ -16,6 +16,7 @@ const DeleteIcon = ({ deleteItem }) => {
             src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png"
             style={iconStyle}
             onClick={deleteItem}
+            alt='Delete Icon'
         />
         </div>
     );

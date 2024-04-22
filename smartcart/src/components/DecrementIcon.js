@@ -16,7 +16,6 @@ const DecrementIcon = ({decrementItem}) => {
     };
 
     const handleDecrement = () => {
-        console.log("Decrementing item");
         if (decrementItem) {
             decrementItem();
         }

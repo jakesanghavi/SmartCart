@@ -60,7 +60,7 @@ const TotalCalculator = ({
         async function getSim() {
             // Don't run anything if nothing is in the cart
             setStoreList(null)
-            if (items.length > 0) {
+            if (items !== null && items.length > 0) {
                 // Get the names of stores from the DB
                 let stores = await getStoreNames()
 
@@ -73,6 +73,10 @@ const TotalCalculator = ({
                     // Get all items offered by that store
                     var storeItems = await getStoreItems(stores[store].id)
 
+                    if (!storeItems || storeItems.length === 0) {
+                        continue;
+                    }
+
                     // Initialize an empty array for a cart we will make for the user from the specific store
                     // at this stage in the loop
                     var storeCart = []
@@ -84,9 +88,10 @@ const TotalCalculator = ({
                         var item_name = mostSimilar.items.name
                         var price = mostSimilar.price
                         var score = mostSimilar.items.score
+                        var quantity = items[item].quantity
 
                         // Append this item actually offered by the store to that stores cart
-                        storeCart.push({ item_name, price, score })
+                        storeCart.push({ item_name, price, score, quantity})
                     }
                     // After iterating over each store, push each stores cart to the overall array
                     storeCarts.push(storeCart)
@@ -106,7 +111,7 @@ const TotalCalculator = ({
 
                     // Iterate over all items in each cart and add to the storePrice
                     for (var storeItem in cartItems) {
-                        storePrice = storePrice + cartItems[storeItem].price
+                        storePrice = storePrice + cartItems[storeItem].price * cartItems[storeItem].quantity
                     }
                     var storeName = stores[cart].name
 

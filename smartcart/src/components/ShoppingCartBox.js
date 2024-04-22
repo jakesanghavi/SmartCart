@@ -29,7 +29,7 @@ const ShoppingCartBox = ({
     } else {
       setItems([]);
     }
-  }, []);
+  }, [defaultQuantity, setItems]);
   
 
 
@@ -95,14 +95,10 @@ const ShoppingCartBox = ({
   };
 
   const deleteItem = (index) => {
-    console.log("Deleting item at index", index);
-    console.log(items)
 
     // Avoid modifying the original state directly
     const updatedItems = items.slice();
     updatedItems.splice(index, 1);
-    // console.log(updatedItems)
-    // items = updatedItems;
     setItems(updatedItems)
 
     // Update localStorage with the new array
@@ -110,7 +106,6 @@ const ShoppingCartBox = ({
   };
 
   const decrementItem = (index) => {
-    console.log("Decrementing item at index", index);
     const updatedItems = [...items]; // Create a copy of the array
     if (updatedItems[index].quantity > 1) { // Ensure quantity is greater than 1
       updatedItems[index].quantity--; // Decrement quantity by 1
@@ -120,7 +115,6 @@ const ShoppingCartBox = ({
   };
 
   const incrementItem = (index) => {
-    console.log("Incrementing item at index", index);
     const updatedItems = [...items]; // Create a copy of the array
     updatedItems[index].quantity++; // Increment quantity by 1
     setItems(updatedItems);

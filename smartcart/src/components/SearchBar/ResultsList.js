@@ -3,14 +3,13 @@ import React, { useState, useEffect } from "react";
 import styles from "./ResultsList.styles.js";
 import ResultsItem from "./ResultsItem.js";
 
-const ResultsList = ({ searchTerm, setCartCount }) => {
+const ResultsList = ({ searchTerm, setCartCount, setItems  }) => {
   const [searchResults, setSearchResults] = useState([]);
   const maxItems = 10;
 
   useEffect(() => {
     const fetchData = async () => {
       const results = await supabaseService.getItemsForSearchTerm(searchTerm);
-      console.log(results);
       setSearchResults(results);
     };
     if (searchTerm !== "") {
@@ -28,7 +27,7 @@ const ResultsList = ({ searchTerm, setCartCount }) => {
         <ResultsItem
           item={item}
           setCartCount={setCartCount}
-          searchTerm={searchTerm}
+          setItems={setItems}
         />
       ))}
     </div>
