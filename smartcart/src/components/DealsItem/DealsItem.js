@@ -17,6 +17,25 @@ const DealsItem = ({ deal, setCartCount }) => {
     image_url,
   } = deal;
 
+  const processPlural = (inputString) => {
+    // Check if the string starts with "1 "
+    if (inputString.startsWith("1 ")) {
+        // If so, remove the last character (the s)
+      const regex = /(weeks|days)/g;
+    
+      // Replace "weeks" or "days" with "week" or "day"
+      let processedString = inputString.replace(regex, function(match) {
+          return match.slice(0, -1);
+      });
+
+      return processedString;
+    } else {
+        return inputString;
+    }
+  }
+
+  const cheaper_than_processed = processPlural(cheaper_than);
+
   // const item = {
   //   id,
   //   item_name,
@@ -60,7 +79,7 @@ const DealsItem = ({ deal, setCartCount }) => {
       <div style={styles.decrease}>
         {(percent_price_decrease * 100).toFixed(0)}% Cheaper!
       </div>
-      <div style={styles.cheaperThan}>Than {cheaper_than}</div>
+      <div style={styles.cheaperThan}>Than {cheaper_than_processed}</div>
       {/* <div
         onClick={() => handleItemClick(item)}
         style={inCart ? styles.buttonInCart : styles.buttonNotInCart}
