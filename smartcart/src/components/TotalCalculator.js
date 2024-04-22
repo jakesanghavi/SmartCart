@@ -159,7 +159,7 @@ const TotalCalculator = ({
     };
 
     const innerContainerStyle = {
-        backgroundColor: "#D9D9D9",
+        backgroundColor: "white",
         padding: "20px",
         borderRadius: "30px",
         width: `${width}px`,
@@ -171,7 +171,6 @@ const TotalCalculator = ({
     };
     const titleTextStyle = {
         fontSize: `${fontSize + 20}px`,
-        fontFamily: "Courier",
         fontWeight: "bold",
         color: "black",
         marginTop: "10px",
@@ -179,9 +178,7 @@ const TotalCalculator = ({
       };
       const textStyle = {
         fontSize: `${fontSize}px`,
-        fontFamily: "Courier",
         color: "black",
-        fontWeight: "bold",
         marginTop: "10px",
         textAlign: "right"
       };
