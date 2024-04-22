@@ -4,6 +4,7 @@ import DeleteIcon from "../components/DeleteIcon.js";
 import IncrementIcon from "../components/IncrementIcon.js";
 import DecrementIcon from "../components/DecrementIcon.js";
 import QuantityDisplay from "../components/QuantityDisplay.js";
+import { IoArrowBackOutline } from "react-icons/io5";
 
 const ShoppingCartBox = ({
   items,
@@ -65,7 +66,7 @@ const ShoppingCartBox = ({
     addEventListener: "click",
   };
   const innerContainerStyle = {
-    backgroundColor: "#D9D9D9",
+    backgroundColor: "white",
     padding: "20px",
     borderRadius: "30px",
     width: `${width}px`,
@@ -77,16 +78,13 @@ const ShoppingCartBox = ({
   };
   const titleTextStyle = {
     fontSize: `${fontSize + 20}px`,
-    fontFamily: "Courier",
     fontWeight: "bold",
     color: "black",
     marginTop: "10px",
   };
   const textStyle = {
     fontSize: `${fontSize}px`,
-    fontFamily: "Courier",
     color: "black",
-    fontWeight: "bold",
     marginTop: "10px",
   };
 
@@ -124,7 +122,7 @@ const ShoppingCartBox = ({
   return (
     <div style = {containerStyle}>
       <div style={backButtonContainerStyle} onClick = {handleClick}>
-        <img src="https://static-00.iconduck.com/assets.00/arrow-go-back-icon-2048x1821-lu8m3223.png" alt="back" style={{width: "100px", height: "100px"}}/>
+        <IoArrowBackOutline size={80} color="white" />
       </div>
       <div style={outerContainerStyle}>
         <div style={innerContainerStyle}>
