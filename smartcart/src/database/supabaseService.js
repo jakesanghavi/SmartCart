@@ -14,7 +14,7 @@ class SupabaseService {
      * @return {Object} Result of the query.
      */
     const items = await this.client.queryTableIlike(
-      "generic_stem_sim",
+      "no_yams",
       "name",
       `%${searchTerm}%`
     );
