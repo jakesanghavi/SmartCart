@@ -57,6 +57,19 @@ class SupabaseService {
     return data.data;
   }
 
+  async getSimilar(arg) {
+    let data = "";
+    await this.client.client
+      .from("instant_sim")
+      .select("*")
+      .eq("name", arg) // Add this line to filter rows where "name" equals the argument
+      .then((response) => {
+        data = response;
+      });
+  
+    return data.data;
+  }
+
   // Get all items offered by a given store (by ID)
   async storeItems(id) {
     let data = "";
