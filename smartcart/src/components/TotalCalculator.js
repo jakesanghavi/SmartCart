@@ -10,6 +10,7 @@ const TotalCalculator = ({
 }) => {
     const [storeList, setStoreList] = useState(null);
     const timerRef = useRef(null);
+    const [progress, setProgress] = useState(null)
 
     // Function to get all unique store names from the DB
     async function getStoreNames() {
@@ -48,7 +49,7 @@ const TotalCalculator = ({
                 if (items !== null && items.length > 0) {
                     // Get the names of stores from the DB
                     let stores = await getStoreNames()
-                    console.log(stores)
+                    // console.log(stores)
 
                     // Initialize an empty array of carts
                     // Each element will be the cart from an associated store
@@ -58,7 +59,7 @@ const TotalCalculator = ({
                     for (var store in stores) {
                         // Get all items offered by that store
                         var storeItems = await getStoreItems(stores[store].id)
-                        console.log(stores[store])
+                        // console.log(stores[store])
                         storeItems = Array.from(new Set(storeItems.map(obj => obj.items.name))).map(name => storeItems.find(obj => obj.items.name === name));
                         var itemNames = [];
 
@@ -107,6 +108,7 @@ const TotalCalculator = ({
 
                         }
                         // After iterating over each store, push each stores cart to the overall array
+                        setProgress(((parseInt(store) + 1)/stores.length).toFixed(2)*100);
                         storeCarts.push(storeCart)
                     }
 
@@ -207,8 +209,12 @@ const TotalCalculator = ({
                             // Case 1: items has 0 length, show nothing
                             null
                         ) : storeList === null ? (
-                            // Case 2: firstThreeItems is null, show loading animation
+                            <>
+                            {/* // Case 2: firstThreeItems is null, show loading animation */}
                             <p style={{ animation: "bounce 0.75s infinite" }}>Loading Recommendations...</p>
+                            <p>Percent Done: {parseInt(progress) + '%'}</p>
+                            <input type="range" min="0" max="100" value={progress ? progress : 0}></input>
+                            </>
                         ) : (
                             // Case 3: show the recommended stores
                             storeList.map((item, index) => (
